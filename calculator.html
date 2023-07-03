@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculator</title>
+    <style>
+        .calculator {
+            width: 331px;
+            margin: 0 auto;
+            text-align: center;
+            border: 8px solid rgb(235, 11, 11);
+            height: 366px;
+        }
+
+
+        #result {
+            width: 81%;
+            padding: 21px;
+            margin-bottom: 12px;
+            margin-top: 20px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 14px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <br><br>
+    <div class="calculator">
+        <input type="text" id="result" disabled>
+        <div class="buttons">
+            <button onclick="appendNumber(1)">1</button>
+            <button onclick="appendNumber(2)">2</button>
+            <button onclick="appendNumber(3)">3</button>
+            <button onclick="clearResult()">C</button>
+            <button onclick="appendNumber(4)">4</button>
+            <button onclick="appendNumber(5)">5</button>
+            <button onclick="appendNumber(6)">6</button>
+            <button onclick="appendOperator('/')">/</button>
+            <button onclick="appendNumber(7)">7</button>
+            <button onclick="appendNumber(8)">8</button>
+            <button onclick="appendNumber(9)">9</button>
+            <button onclick="appendOperator('-')">-</button>
+            <button onclick="appendNumber(0)">0</button>
+            <button onclick="appendOperator('.')">.</button>
+            <button onclick="appendOperator('*')">*</button>
+            <button onclick="appendOperator('+')">+</button>
+            <button onclick="calculate()">=</button>
+
+        </div>
+    </div>
+
+    <script>
+        let expression = '';
+
+        function clearResult() {
+            expression = '';
+            document.getElementById('result').value = '';
+        }
+
+        function appendNumber(number) {
+            expression += number;
+            document.getElementById('result').value = expression;
+        }
+
+        function appendOperator(operator) {
+            expression += operator;
+            document.getElementById('result').value = expression;
+        }
+
+        function calculate() {
+            try {
+                const result = eval(expression);
+                document.getElementById('result').value = result;
+                expression = result;
+            } catch (error) {
+                document.getElementById('result').value = 'Error';
+            }
+        }
+
+    </script>
+</body>
+
+</html>
